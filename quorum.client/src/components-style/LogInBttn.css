@@ -1,0 +1,25 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.log_in_bttn {
+    width: 40rem;
+    height: 5rem;
+    border-radius: 0.9375rem;
+    border: 0.3rem solid #90CAF9;
+    background-color: #FFFFFF;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #90CAF9;
+    margin-bottom: 7rem;
+    margin-left: 5rem;
+    cursor: pointer;
+}
+
+.log_in_bttn:hover {
+    border: #07344A;
+    background-color: #07344A;
+    color: #F5F5F5;
+}

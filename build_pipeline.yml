@@ -1,0 +1,63 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  projectFolderServer: 'Quorum.Server'  
+  projectFileServer: 'Quorum.Server/Quorum.Server.csproj'
+  projectFolderClient: 'quorum.client'
+  projectFileClient: 'quorum.client/quorum.qlient.esproj'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(projectFolderServer)/$(projectFileServer)'  
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(projectFolderClient)/$(projectFileClient)'
+
+- task: VSBuild@1
+  displayName: 'Build Server'
+  inputs:
+    solution: '$(projectFolderServer)/$(projectFileServer)'  
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSBuild@1
+  displayName: 'Build Client'
+  inputs:
+    solution: '$(projectFolderClient)/$(projectFileClient)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'build_artifact'
+    publishLocation: 'Container'
+
+- task: MSBuild@1
+  displayName: 'Build Server'
+  inputs:
+    solution: '$(projectFolderServer)/$(projectFileServer)'
+    msbuildArguments: '/p:Configuration=$(buildConfiguration) /p:Platform=$(buildPlatform) /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
+
+- task: MSBuild@1
+  displayName: 'Build Client'
+  inputs:
+    solution: '$(projectFolderClient)/$(projectFileClient)'
+    msbuildArguments: '/p:Configuration=$(buildConfiguration) /p:Platform=$(buildPlatform) /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)"'

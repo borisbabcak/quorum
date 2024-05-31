@@ -1,0 +1,94 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  ArtifactName: 'drop'
+
+steps:
+# Install Node.js (required for building the React frontend)
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
+
+# Install frontend dependencies and build the React frontend
+- script: npm install
+  workingDirectory: 'quorum.client'
+  displayName: 'Install npm dependencies'
+
+- script: npm run build
+  workingDirectory: 'quorum.client'
+  displayName: 'Build React project'
+
+# Check contents of frontend project directory
+- script: |
+    echo "Listing contents of quorum.client:"
+    dir quorum.client
+  displayName: 'Check Frontend Project Directory'
+
+# Check contents of frontend build directory
+- script: |
+    echo "Listing contents of quorum.client/dist:"
+    dir quorum.client\dist
+  displayName: 'Check Frontend Build Directory'
+
+# Install the .NET 8.0 SDK
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.x' 
+  displayName: 'Install .NET SDK'
+
+# Install the latest NuGet version
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '6.10.0'
+  displayName: 'Install NuGet'
+
+# Clear NuGet cache
+- script: |
+    nuget locals all -clear
+  displayName: 'Clear NuGet Cache'
+
+# Restore NuGet packages
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln' 
+    feedsToUse: 'select'
+  displayName: 'Restore NuGet Packages'
+
+# Build the ASP.NET backend solution
+- task: VSBuild@1
+  inputs:
+    solution: '**/*.sln' 
+    msbuildArgs: '/p:OutDir=$(Build.ArtifactStagingDirectory)\output'
+    platform: 'Any CPU'
+    configuration: '$(buildConfiguration)'
+  displayName: 'Build ASP.NET Backend'
+
+# Copy frontend build files to the ASP.NET backend's wwwroot directory
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'quorum.client/dist'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\output\wwwroot'
+  displayName: 'Copy Frontend Files to wwwroot'
+
+# Check contents of artifact staging directory after copying frontend files
+- script: |
+    echo "Listing contents of $(Build.ArtifactStagingDirectory)\output\wwwroot:"
+    dir "$(Build.ArtifactStagingDirectory)\output\wwwroot"
+  displayName: 'Check Artifact Staging Directory After Copying Frontend Files'
+
+# Publish build artifacts
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\output'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish Build Artifacts'

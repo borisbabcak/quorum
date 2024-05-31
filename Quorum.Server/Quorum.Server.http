@@ -1,0 +1,9 @@
+@Survey.Server_HostAddress = http://localhost:5116
+
+GET {{Survey.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+GET {{Survey.Server_HostAddress}}/templates/
+Accept: application/json
+
+###

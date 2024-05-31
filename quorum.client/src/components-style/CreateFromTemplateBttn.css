@@ -1,0 +1,21 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.create_from_template_bttn {
+    width: 42.5rem;
+    height: 8.75rem;
+    border-radius: 0.9375rem;
+    border: 0.3rem solid #90CAF9;
+    background-color: #FFFFFF;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #90CAF9;
+}
+
+.create_from_template_bttn:hover {
+    background-color: #90CAF9;
+    color: #F5F5F5;
+}

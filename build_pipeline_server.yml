@@ -1,0 +1,59 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - Quorum.Server/*  
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  serverProjectPath: 'Quorum.Server'
+
+steps:
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '5.8.x'
+  displayName: 'Install NuGet'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '$(serverProjectPath)/*.csproj'
+  displayName: 'Restore dependencies using .NET Core'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '$(serverProjectPath)/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+  displayName: 'Build ASP.NET Core project'
+
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'test'
+#     projects: '$(serverProjectPath)/*.Tests.csproj'
+#     arguments: '--configuration $(buildConfiguration)'
+#   displayName: 'Run ASP.NET Core tests'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '$(serverProjectPath)/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/server_publish'
+    zipAfterPublish: true
+  displayName: 'Publish ASP.NET Core project'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/server_publish'
+    ArtifactName: 'server'
+    publishLocation: 'Container'
+  displayName: 'Publish Server Artifacts'
+
+
+    

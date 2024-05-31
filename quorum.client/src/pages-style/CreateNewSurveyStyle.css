@@ -1,0 +1,426 @@
+.create_survey{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rectangle_questions {
+    width: 140rem;
+    height: 95rem;
+    border-radius: 3rem;
+    border: 6px solid #caf0fe;
+    flex-shrink: 0;
+    margin-left: 3rem;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.rectangle_editor {
+    width: 30rem;
+    height: 95rem;
+    border-radius: 3rem;
+    border: 6px solid #caf0fe;
+    flex-shrink: 0;
+    margin-left: 4rem;
+}
+
+.editors {
+    width: 25rem;
+    height: 95rem;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5rem;
+    margin-top: 3rem;
+}
+
+.editor_select {
+    width: 20rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-left: 5rem;
+    margin-top: 1rem;
+}
+
+
+.text {
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 500;
+    color: #07344A;
+    margin-left: 2rem;
+}
+
+.font_picker {
+    width: 20rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-top: 2.5rem;
+}
+
+.font_picker_select {
+    width: 20rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+
+}
+
+.font_picker_select:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.font_size {
+    width: 20rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-top: 6.5rem;
+}
+
+.font_size_select {
+    width: 20rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.font_size_select:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.font_style {
+    width: 20rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-top: 7.5rem;
+}
+
+.style_bold {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.style_bold:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.style_italic {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.style_italic:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.style_underline {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.style_underline:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.font_align {
+    width: 20rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    margin-right: 4rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-top: 8.5rem;
+}
+
+.align_left {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.align_left:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.align_center {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.align_center:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.align_right {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.align_right:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.color_picker {
+    width: 20rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-top: 9.5rem;
+}
+
+.color_picker_input {
+    width: 20rem;
+    height: 5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-top: 1rem;
+}
+
+.survey_choice_field {
+    width: 100rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-top: 4.5rem;
+    margin-left: 20rem;
+}
+
+.field_button {
+    width: 10rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.buttons_pair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+.input_pair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+.survey_text_field {
+    width: 100rem;
+    height: 7rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+    margin-top: 4.5rem;
+    margin-left: 20rem;
+}
+
+.print_button_pair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8.5rem;
+    gap: 2rem;
+    margin-right: 4rem;
+}
+
+.print_button  {
+    width: 5.5rem;
+    height: 5.5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+.send_button {
+    width: 15rem;
+    height: 5.5rem;
+    flex-shrink: 1;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 6px solid #caf0fe;
+    text-align: center;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #07344A;
+}
+
+
+.print_button:hover , .send_button:hover {
+    transition: 300ms ease-in-out;
+    background-color: #caf0fe;
+}
+
+.print_image {
+    width: 4.5rem;
+    height: 4.5rem;
+    flex-shrink: 1;
+    margin-right: 2rem;
+}
+
+.send_image {
+    width: 4.5rem;
+    height: 4.5rem;
+    flex-shrink: 1;
+    margin-right: 1rem;
+}
+

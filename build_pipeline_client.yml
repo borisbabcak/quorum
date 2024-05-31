@@ -1,0 +1,52 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - quorum.client/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  clientProjectPath: 'quorum.client'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'
+  displayName: 'Install Node.js'
+
+- script: npm install
+  workingDirectory: '$(clientProjectPath)'
+  displayName: 'Install npm dependencies'
+
+- script: npm run build
+  workingDirectory: '$(clientProjectPath)'
+  displayName: 'Build React project'
+
+- script: ls -la $(clientProjectPath)
+  displayName: 'List contents of clientProjectPath'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(clientProjectPath)/dist'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/quorum.client.zip'
+    replaceExistingArchive: true
+  displayName: 'Archive client artifacts'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/quorum.client.zip'
+    ArtifactName: 'client'
+    publishLocation: 'Container'
+  displayName: 'Publish Client Artifacts'
